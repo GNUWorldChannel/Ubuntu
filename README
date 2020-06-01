@@ -319,7 +319,7 @@ Test OS: Ubuntu 20.04 LTS \n \l - Server
 	 NOTE: You got install tcl-dev on pre-requisites, but dont jump this step!!
 
 	 root@ircd:~# git clone https://github.com/Shadowss/tcl8.4.13-src
-	 root@ircd:~# cd /tcl8.4.13-src/unix
+	 root@ircd:~# cd tcl8.4.13-src/unix/	
 	 root@ircd:~/tcl8.4.13-src/unix# chmod +x configure
 	 root@ircd:~/tcl8.4.13-src/unix# ./configure
 	 root@ircd:~/tcl8.4.13-src/unix# make
