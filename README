@@ -446,9 +446,10 @@ Test OS: Ubuntu 20.04 LTS \n \l - Server
 	 
 	 NOTE: You can edit this info or not!
 	 NOTE: If you edit. cservice.addme.sql User and change from Admin to custom user. 
-	 You have to edit. chanfix.addme.sql or cservice.addme.sql 
+	 You have to edit. chanfix.addme.sql, cservice.addme.sql, ccontrol.addme.sql
 	 (Use nano):  nano chanfix.addme.sql
 	 (Use nano):  nano cservice.addme.sql
+	 (Use nano):  nano ccontrol.addme.sql
 	 
 	 NOTE: Create CSERVICE SQL.
 	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/createdb --template=template0 -E=SQL_ASCII cservice
@@ -528,6 +529,8 @@ Test OS: Ubuntu 20.04 LTS \n \l - Server
 	 
 	 For login to X type next command : 
 	 /msg X@services.undernet.org login Admin temPass
+	/msg X@services.undernet.org newpass PASSOWORD
+	
 	 
 	 NOTE: if you login and all go OK! you ill see this msg from X or the name you select!
 	 
