@@ -326,7 +326,7 @@ Test OS: Ubuntu 20.04 LTS \n \l - Server
 	 root@ircd:~/tcl8.4.13-src/unix# make install
 	 root@ircd:~/tcl8.4.13-src/unix# cd ..
 	 root@ircd:~/tcl8.4.13-src# cd ..
-	 root@ircd:~# ln -s /usr/local/lib/tclConfig.sh /usr/lib
+	 root@ircd:~# ln -s /usr/local/lib/tclConfig.sh/usr/lib
 	 
 #4 - Install POSTGRESQL for sql manipulation.
 	 NOTE: we dont recoment apt-get install : SO PLEASE! DONT!
