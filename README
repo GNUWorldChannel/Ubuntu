@@ -428,7 +428,8 @@ Test OS: Ubuntu 20.04 LTS \n \l - Server
 	 
          nano cservice_config.h
          (we will enable features and change some config.)
-          change: #undef USE_NEWPASS by #define USE_NEWPASS
+          change: #undef USE_NEWPASS by #define USE_NEWPASS 
+	  change: #undef ALLOW_HELLO by #define ALLOW_HELLO 
           change: #define IPR_DEFAULT_REJECT by #undef IPR_DEFAULT_REJECT
          NOTE: Those are mandatory if you won´t install cservice site. Once modified you save it CTRL+O & X) 
          
