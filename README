@@ -242,7 +242,7 @@ Test OS: Ubuntu 20.04 LTS \n \l - Server
 	gnuworld@ircd:~/ircu2 ./configure --help (SEE the help for all config. This is a basic setup.)
 	gnuworld@ircd:~/ircu2 ./configure --prefix=$HOME --with-maxcon=1024  NOTE:( Maximum number of connections server will accept. --with-maxcon=1024 )	
 	
-	(Note if you have Raspberry pi 4 use this flag ./configure --build=unknown-unknown-linux --prefix=$HOME --with-maxcon=1024
+	Note if you have Raspberry pi 4 use this flag ./configure --build=unknown-unknown-linux --prefix=$HOME --with-maxcon=1024
 	
 	gnuworld@ircd:~/ircu2 make
 	gnuworld@ircd:~/ircu2 make install
