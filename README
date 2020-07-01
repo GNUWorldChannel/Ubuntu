@@ -240,7 +240,10 @@ Test OS: Ubuntu 20.04 LTS \n \l - Server
 	gnuworld@ircd:~$ cd ircu2/
 	gnuworld@ircd:~/ircu2 chmod +x configure
 	gnuworld@ircd:~/ircu2 ./configure --help (SEE the help for all config. This is a basic setup.)
-	gnuworld@ircd:~/ircu2 ./configure --prefix=$HOME --with-maxcon=1024  NOTE:( Maximum number of connections server will accept. --with-maxcon=1024 )
+	gnuworld@ircd:~/ircu2 ./configure --prefix=$HOME --with-maxcon=1024  NOTE:( Maximum number of connections server will accept. --with-maxcon=1024 )	
+	
+	(Note if you have Raspberry pi 4 use this flag ./configure --build=unknown-unknown-linux --prefix=$HOME --with-maxcon=1024
+	
 	gnuworld@ircd:~/ircu2 make
 	gnuworld@ircd:~/ircu2 make install
 
@@ -423,6 +426,9 @@ Test OS: Ubuntu 20.04 LTS \n \l - Server
 	 gnuworld@ircd:~/gnuworld$
 	 gnuworld@ircd:~/gnuworld$ chmod +x configure 
 	 gnuworld@ircd:~/gnuworld$ ./configure --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/
+	 
+	 NOTE: For Raspberry pi4 use this: ./configure --build=unknown-unknown-linux --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/
+
 	 gnuworld@ircd:~/gnuworld$ cd mod.cservice
 	 gnuworld@ircd:~/gnuworld/mod.cservice$
 	 
