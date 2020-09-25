@@ -5,7 +5,7 @@
 |_|   |_| \_\_____|    |_| \_\_____\__\_\\___/|___|____/___| |_| |_____|____/ #1
 
 ----------------------------------------------------------------------------
-		OS SUPPORT: Ubuntu 20.04 LTS \n \l - Server / Raspberry Pi 4
+		OS SUPPORT: Ubuntu 20.04.1 LTS \n \l - Server / Raspberry Pi 4
 			[ by: ARI3L | rVn | y2k ] #arlington STAFF
 ----------------------------------------------------------------------------
 
@@ -219,7 +219,7 @@
       | | | | (__| |_| |/ __/
   The |_|_|  \___|\__,_|_____| Guide #2
 ------------------------------------------------------------
-OS SUPPORT: Ubuntu 20.04 LTS \n \l - Server / Raspberry Pi 4
+OS SUPPORT: Ubuntu 20.04.1 LTS \n \l - Server / Raspberry Pi 4
               [ by: ARI3L | rVn | y2k ]
 ------------------------------------------------------------
 	
@@ -296,7 +296,7 @@ OS SUPPORT: Ubuntu 20.04 LTS \n \l - Server / Raspberry Pi 4
      | |_| | |\  | |_| | \ V  V / (_) | | | | (_| |
  The  \____|_| \_|\___/   \_/\_/ \___/|_|_|  \__,_| Guide #3
 ------------------------------------------------------------
-OS SUPPORT: Ubuntu 20.04 LTS \n \l - Server / Raspberry Pi 4
+OS SUPPORT: Ubuntu 20.04.1 LTS \n \l - Server / Raspberry Pi 4
 		[ by: ARI3L | rVn | y2k ]
 ------------------------------------------------------------
 
@@ -565,11 +565,13 @@ OS SUPPORT: Ubuntu 20.04 LTS \n \l - Server / Raspberry Pi 4
  The \____|___/\___|_|    \_/ |_|\___\___|      \_/\_/ \___|_.__/ Guide #4
 
 --------------------------------------------------------------------------
-		Test OS: Ubuntu 20.04 LTS \n \l - Server
+		Test OS: Ubuntu 20.04.1 LTS \n \l - Server
 			[ by: ARI3L | rVn | y2k ]
 --------------------------------------------------------------------------
 
 "When we get a notice cservice web code gets updated, this guide will include cservice web install in one day"
+
+NEW: 09/2020: We are in the final stages of testing CSERVICE WEB on PHP 7.4.3, stay tuned, we expect news soon.
 
 #1 - Get system ready for run the Cservice Web.
 
