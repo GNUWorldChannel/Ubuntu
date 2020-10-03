@@ -571,7 +571,9 @@ OS SUPPORT: Ubuntu 20.04.1 LTS \n \l - Server / Raspberry Pi 4
 
 "When we get a notice cservice web code gets updated, this guide will include cservice web install in one day"
 
-NEW: 09/2020: We are in the final stages of testing CSERVICE WEB on PHP 7.4.3, stay tuned, we expect news soon.
+NEW: 
+10/2020: All tests passed successfully, our guide will be written soon. :)
+09/2020: We are in the final stages of testing CSERVICE WEB on PHP 7.4.3, stay tuned, we expect news soon.
 
 #1 - Get system ready for run the Cservice Web.
 
