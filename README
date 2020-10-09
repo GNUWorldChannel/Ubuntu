@@ -120,6 +120,7 @@
 	25                         ALLOW       Anywhere
 	443                        ALLOW       Anywhere
 	80                         ALLOW       Anywhere
+	6667                       ALLOW       Anywhere 
     	
 	4400 (v6)                  ALLOW       Anywhere (v6)
 	22 (v6)                    ALLOW       Anywhere (v6)
@@ -129,7 +130,7 @@
 	25 (v6)                    ALLOW       Anywhere (v6)
 	443 (v6)                   ALLOW       Anywhere (v6)
 	80 (v6)                    ALLOW       Anywhere (v6)
-
+        6667 (v6)                  ALLOW       Anywhere (v6)  
 	root@ircd:~#
 	NOTE: IPV4 on top. IPV6 on (v6)
 	-----------------------
