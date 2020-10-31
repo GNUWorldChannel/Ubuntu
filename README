@@ -559,7 +559,8 @@ OS SUPPORT: Ubuntu 20.04.1 LTS \n \l - Server / Raspberry Pi 4
 	 NOTE: if you login and all go OK! you ill see this msg from X or the name you select!
 	 
 	 -X- AUTHENTICATION SUCCESSFULL AS Admin!
-	 NOTE: services.undernet.org is or domain! if you change this in the .conf file make sure you put your domain.
+	 NOTE: services.undernet.org is a domain! 
+	 (if you change this in the .conf file make sure you put your own domain).
 	 
 
       ____                     _             __        __   _
