@@ -574,7 +574,7 @@ OS SUPPORT: Ubuntu 20.04.1 LTS \n \l - Server / Raspberry Pi 4
 --------------------------------------------------------------------------
 Pay attention to the following: If any cservice-web module does not respond 
 or gives you problems, you should ask the official Undernet network coders,
-because we can only help you install the site, but never modify the code that they they wrote.
+because we can only help you install the site, but never modify the code that they wrote.
 --------------------------------------------------------------------------
 #1. Prepare the system by installing the necessary components.
 
