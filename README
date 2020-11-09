@@ -15,8 +15,6 @@ REVIEW: y2k - ARI3L
 
 #1 - Update OS and change Host.  (root) 
 
-	 NOTE: READ CSERVICE WEB section FIRST. (IF YOU WANT WEB interface working.)
-	 
 	 NOTE: After change Hostname need to reboot the machine.
 	 NOTE: Need to set a subdomain on the server for make it work well.
 	 NOTE: Need a Static local IPV4 Need to check: (netplan or network/interface)
