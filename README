@@ -583,7 +583,7 @@ because we can only help you install the site, but never modify the code that th
 	root@ircd:~# updatedb	
 	root@ircd:~#  nano /etc/php/7.4/apache2/php.ini 
 	NOW: Go to the line 187 and change short_open_tag (from Off to On)
-	Save the file CTRL+O
+	Save the file with (CTRL+O)
 
 	root@ircd:~# service apache2 restart
 
@@ -631,6 +631,8 @@ because we can only help you install the site, but never modify the code that th
 	 root@ircd:~# su - gnuworld
 	 gnuworld@ircd:~/gnuworld$ cd /gnuworld/cservice-web/php_includes
 	 gnuworld@ircd:~/gnuworld/cservice-web/php_includes$
+	 
+	 NOTE: This entry is for the first used created in the db. (Admin or your custom username)
 	 
 	 NOW: nano ipr.sql 
 	 Write your own ip. We show you as an example the first entry if you are trying to access locally.
