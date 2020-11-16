@@ -632,8 +632,8 @@ because we can only help you install the site, but never modify the code that th
 	 gnuworld@ircd:~/gnuworld$ cd /gnuworld/cservice-web/php_includes
 	 gnuworld@ircd:~/gnuworld/cservice-web/php_includes$
 	 
-	 NOTE: This entry is for the first used created in the db. (Admin or your custom username)
-	 
+	 NOTE: This entry is for the first username created in the db. (Admin or your custom username)
+	       
 	 NOW: nano ipr.sql 
 	 Write your own ip. We show you as an example the first entry if you are trying to access locally.
 	 insert into ip_restrict (id, user_id, added_by, added, type, expiry, value) values (1, 1, 1, now()::abstime::int4, 1, 0, '192.168.1.0/24');
