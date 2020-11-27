@@ -599,7 +599,7 @@ because we can only help you install the site, but never modify the code that th
 	 gnuworld@ircd:~/gnuworld/cservice-web$ composer install
 	 gnuworld@ircd:~/gnuworld/cservice-web$ cd php_includes
 	 gnuworld@ircd:~/gnuworld/cservice-web/php_includes$ cp config.inc.dist config.inc
-	 EDIT: cp config.inc.dist config.inc (With your own values)
+	 EDIT: config.inc (With your own values)
 	 
 	 gnuworld@ircd:~/gnuworld/cservice-web/php_includes$ cd ..
 	 gnuworld@ircd:~/gnuworld/cservice-web/ cd ..
