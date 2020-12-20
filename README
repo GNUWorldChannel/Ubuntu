@@ -105,7 +105,7 @@ REVIEW: y2k - ARI3L
 	Firewall is active and enabled on system startup
 	root@ircd:~#
 	-----------------------
-	NOTE: If you dont have the UFE activate not going to Show PORTS OPEN.
+	NOTE: If you dont have the UFW activate not going to Show PORTS OPEN.
 	NOTE: Now we check if all the port are correct open.
 	
 	root@ircd:~# ufw status
