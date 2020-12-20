@@ -19,7 +19,6 @@ REVIEW: y2k - ARI3L
 	 NOTE: Need to set a subdomain on the server for make it work well.
 	 NOTE: Need a Static local IPV4 Need to check: (netplan or network/interface)
 	 NOTE: New system like ubuntu 20.04 work with netplan.
-	 NOTE: (Linux MINT incompatible)
 	 NOTE: This Config is only on IPv4 if you dont have a IPV6 Tunnel config.
 ------------------------------------------------------------------------------
 	 
