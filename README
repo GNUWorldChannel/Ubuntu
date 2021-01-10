@@ -262,6 +262,9 @@ OS SUPPORT: Ubuntu 20.04.1 LTS \n \l - Server / Raspberry Pi 4
 	----------------------
 	gnuworld@ircd:~/lib$ cp example.conf ircd.conf
 	gnuworld@ircd:~/lib$ echo "Hello World" > ircd.motd
+	
+	NOTE: Now Edit ircd.conf how you need and saved it!
+        gnuworld@ircd:~/lib$ nano ircd.conf
 	----------------------
 	gnuworld@ircd:~/lib$ ls
 	example.conf  ircd.conf  ircd.motd
