@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------------
 		OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
-			[ by: ARI3L | rVn | y2k ] #arlington STAFF
+			[ by: ARI3L | y2k ] #IRCAyuda STAFF
 ----------------------------------------------------------------------------
 HOT NEWS: 10/2020: Read about our VM called PayasOS :) 
 https://github.com/GNUWorldChannel/PayasOS-20.04.2
@@ -222,7 +222,7 @@ REVIEW: y2k - ARI3L
   The |_|_|  \___|\__,_|_____| Guide #2
 ------------------------------------------------------------
 OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
-              [ by: ARI3L | rVn | y2k ]
+              [ by: ARI3L | y2k ]
 ------------------------------------------------------------
 	
 #1 - Add user GNUWORLD. + Password ask.
@@ -302,7 +302,7 @@ OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
  The  \____|_| \_|\___/   \_/\_/ \___/|_|_|  \__,_| Guide #3
 ------------------------------------------------------------
 OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
-		[ by: ARI3L | rVn | y2k ]
+		[ by: ARI3L | y2k ]
 ------------------------------------------------------------
 
 #1 - Prepare the system by installing the necessary components. (tcl-dev, net-tools, libpqxx-dev)
