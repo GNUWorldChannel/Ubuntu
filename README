@@ -597,6 +597,7 @@ because we can only help you install the site, but never modify the code that th
 	 root@ircd:~# su - gnuworld
 	 gnuworld@ircd:~$ 
 	 gnuworld@ircd:~$ git clone https://github.com/GNUWorldChannel/cservice-web-php7.4.git
+	 gnuworld@ircd:~$ mv cservice-web-php7.4 cservice-web
 	 gnuworld@ircd:~$ cd cservice-web
 	 gnuworld@ircd:~/gnuworld/cservice-web$ composer install
 	 gnuworld@ircd:~/gnuworld/cservice-web$ cd php_includes
