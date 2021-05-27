@@ -326,7 +326,7 @@ OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
 #3 - If you dont got install TCL this is the next step.
 	 NOTE: You got install tcl-dev on pre-requisites, but dont jump this step!!
 
-	 root@ircd:~# git clone https://github.com/Shadowss/tcl8.4.13-src
+	 root@ircd:~# git clone https://github.com/unixfool/tcl8.4.13-src.git
 	 root@ircd:~# cd tcl8.4.13-src/unix/	
 	 root@ircd:~/tcl8.4.13-src/unix# chmod +x configure
 	 root@ircd:~/tcl8.4.13-src/unix# ./configure
