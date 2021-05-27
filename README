@@ -356,18 +356,13 @@ OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
 	 
 #5 - Install PGTCL1.5
 	 
-	 root@ircd:~# git clone https://github.com/Shadowss/pgtcl1.5.git
+	 root@ircd:~# git clone https://github.com/unixfool/pgtcl1.5.git
 	 root@ircd:~# cd pgtcl1.5
 	 root@ircd:~/pgtcl1.5# export PG_CONFIG=/usr/local/pgsql/bin/pg_config
 	 root@ircd:~/pgtcl1.5#
 	 root@ircd:~/pgtcl1.5# chmod +x configure
 	 root@ircd:~/pgtcl1.5# ./configure --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/
 	 root@ircd:~/pgtcl1.5# make
-	 root@ircd:~/pgtcl1.5# cd generic/
-	 root@ircd:~/pgtcl1.5/generic# nano pgtclAppInit.c
-	 
-	 NOTE: This file only need to edit the <> on this part: <libpgtcl.h> change to "libpgtcl.h"
-	 NOTE: Remember to save file. Crt + X , Y + Intro
 	 
 	 NOTE: This script got a TRICK!! going to show a Error with:
 	 /usr/bin/install: cannot stat `./doc/*.n': No such file or directory
@@ -375,7 +370,7 @@ OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
 	 NOTE: So make sure you create first! for this error dont display!
 	 NOTE: Some people like to use touch or mkdir, but we recoment nano with the next trick!! :)
 	 
-	 root@ircd:~/pgtcl1.5/generic# cd ..
+	 root@ircd:~/pgtcl1.5# 
 	 root@ircd:~/pgtcl1.5# nano ./doc/*.n
 	 
 	 NOTE: nano ./doc/*.n   (Inside that file, just write a [A] and erase all!! make sure the file is empty.
