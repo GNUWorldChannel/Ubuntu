@@ -30,7 +30,7 @@ OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
 #3 - If you dont got install TCL this is the next step.
 	 NOTE: You got install tcl-dev on pre-requisites, but dont jump this step!!
 
-	 root@ircd:~# git clone https://github.com/unixfool/tcl8.4.13-src.git
+	 root@ircd:~# git clone https://github.com/Shadowss/tcl8.4.13-src
 	 root@ircd:~# cd tcl8.4.13-src/unix/	
 	 root@ircd:~/tcl8.4.13-src/unix# chmod +x configure
 	 root@ircd:~/tcl8.4.13-src/unix# ./configure
@@ -60,7 +60,7 @@ OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
 	 
 #5 - Install PGTCL1.5
 	 
-	 root@ircd:~# git clone https://github.com/Shadowss/tcl8.4.13-src
+	 root@ircd:~# git clone https://github.com/Shadowss/pgtcl1.5.git
 	 root@ircd:~# cd pgtcl1.5
 	 root@ircd:~/pgtcl1.5# export PG_CONFIG=/usr/local/pgsql/bin/pg_config
 	 root@ircd:~/pgtcl1.5#
