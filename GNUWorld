@@ -1,0 +1,269 @@
+
+       ____ _   _ _   ___        __    _         _
+      / ___| \ | | | | \ \      / /__ | |_ __ __| |
+     | |  _|  \| | | | |\ \ /\ / / _ \| | '__/ _` |
+     | |_| | |\  | |_| | \ V  V / (_) | | | | (_| |
+ The  \____|_| \_|\___/   \_/\_/ \___/|_|_|  \__,_| Guide #3
+------------------------------------------------------------
+OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
+		[ by: ARI3L | y2k ]
+------------------------------------------------------------
+
+#1 - Prepare the system by installing the necessary components. (tcl-dev, net-tools, libpqxx-dev)
+
+	 root@ircd:~# apt-get install tcl-dev net-tools libpqxx-dev mlocate
+
+#2 - Check if you have TCL installed.
+		
+	 root@ircd:~# /usr/bin/updatedb
+	 root@ircd:~# locate tclConfig.sh
+	 /root/tcl8.4.13-src/unix/tclConfig.sh
+	 /root/tcl8.4.13-src/unix/tclConfig.sh.in
+	 /root/tcl8.4.13-src/win/tclConfig.sh.in
+	 /usr/lib/tclConfig.sh
+	 /usr/lib/tcl8.6/tclConfig.sh
+	 /usr/lib/x86_64-linux-gnu/tclConfig.sh
+	 /usr/lib/x86_64-linux-gnu/tcl8.6/tclConfig.sh
+	 /usr/local/lib/tclConfig.sh
+	 root@ircd:~#
+
+#3 - If you dont got install TCL this is the next step.
+	 NOTE: You got install tcl-dev on pre-requisites, but dont jump this step!!
+
+	 root@ircd:~# git clone https://github.com/unixfool/tcl8.4.13-src.git
+	 root@ircd:~# cd tcl8.4.13-src/unix/	
+	 root@ircd:~/tcl8.4.13-src/unix# chmod +x configure
+	 root@ircd:~/tcl8.4.13-src/unix# ./configure
+	 root@ircd:~/tcl8.4.13-src/unix# make
+	 root@ircd:~/tcl8.4.13-src/unix# make install
+	 root@ircd:~/tcl8.4.13-src/unix# cd ..
+	 root@ircd:~/tcl8.4.13-src# cd ..
+	 root@ircd:~# ln -s /usr/local/lib/tclConfig.sh/usr/lib
+	 
+#4 - Install POSTGRESQL for sql manipulation.
+	 NOTE: we dont recoment apt-get install : SO PLEASE! DONT!
+	 
+	 root@ircd:~# wget https://coder-com.universalnet.org/packages/postgresql-10.2.tar.gz
+	 root@ircd:~# tar -zxvf postgresql-10.2.tar.gz
+	 root@ircd:~# cd postgresql-10.2/
+	 root@ircd:~/postgresql-10.2#
+	 root@ircd:~/postgresql-10.2# chmod +x configure
+	 root@ircd:~/postgresql-10.2# ./configure --with-CXX --enable-multibyte --with-tclconfig=/usr/lib --without-tk --without-readline --without-zlib
+	 root@ircd:~/postgresql-10.2# make
+	 root@ircd:~/postgresql-10.2# make install
+	 root@ircd:~/postgresql-10.2# nano /etc/ld.so.conf
+	 root@ircd:~/postgresql-10.2# cd
+	 root@ircd:~#
+
+	 NOTE: In this file you need to add this line: 			/usr/local/pgsql/lib
+	 NOTE: Remember to save file. Crt + X , Y + Intro
+	 
+#5 - Install PGTCL1.5
+	 
+	 root@ircd:~# git clone https://github.com/Shadowss/tcl8.4.13-src
+	 root@ircd:~# cd pgtcl1.5
+	 root@ircd:~/pgtcl1.5# export PG_CONFIG=/usr/local/pgsql/bin/pg_config
+	 root@ircd:~/pgtcl1.5#
+	 root@ircd:~/pgtcl1.5# chmod +x configure
+	 root@ircd:~/pgtcl1.5# ./configure --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/
+	 root@ircd:~/pgtcl1.5# make
+	 root@ircd:~/pgtcl1.5# cd generic/
+	 root@ircd:~/pgtcl1.5/generic# nano pgtclAppInit.c
+
+	 NOTE: This file only need to edit the <> on this part: <libpgtcl.h> change to "libpgtcl.h"
+	 NOTE: Remember to save file. Crt + X , Y + Intro
+	 
+	 NOTE: This script got a TRICK!! going to show a Error with:
+	 /usr/bin/install: cannot stat `./doc/*.n': No such file or directory
+
+	 NOTE: So make sure you create first! for this error dont display!
+	 NOTE: Some people like to use touch or mkdir, but we recoment nano with the next trick!! :)
+	 
+	 root@ircd:~/pgtcl1.5/generic# cd ..
+	 root@ircd:~/pgtcl1.5# 
+	 root@ircd:~/pgtcl1.5# nano ./doc/*.n
+	 
+	 NOTE: nano ./doc/*.n   (Inside that file, just write a [A] and erase all!! make sure the file is empty.
+	 NOTE: Close Editor and going to ask for save! say YES)
+	 NOTE: Remember to save file. Crt + X , Y + Intro
+	 
+	 root@ircd:~/pgtcl1.5# make pgtclsh
+	 root@ircd:~/pgtcl1.5# make install
+	 root@ircd:~/pgtcl1.5# mv pgtclsh /usr/local/pgsql/bin
+	 root@ircd:~/pgtcl1.5# mv libpgtcl1.5.so /usr/local/pgsql/lib
+	 root@ircd:~/pgtcl1.5# updatedb
+	 root@ircd:~/pgtcl1.5# ldconfig
+	 root@ircd:~/pgtcl1.5# /usr/local/pgsql/bin/pgtclsh
+	 
+	 NOTE: This going to show some like: 
+	 %
+	 NOTE: Crt + C and close. (This is all good!)
+	 
+#6 - Now we are going to crate DATABASE !
+	 
+	 root@ircd:~/pgtcl1.5# cd ..
+	 root@ircd:~# mkdir /usr/local/pgsql/data
+	 root@ircd:~# chown gnuworld.gnuworld /usr/local/pgsql/data
+	 root@ircd:~# su - gnuworld
+	 gnuworld@ircd:~$ 
+	 gnuworld@ircd:~$ /usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
+	 
+	 NOTE: In some case the script going to show you the command for start!!
+	 NOTE: If this is not correct! and the script dont show msg command: /usr/local/pgsql/bin/postmaster -B 64 -N 32 -i -D /usr/local/pgsql/data -o -F -h 127.0.0.1 >/dev/null 2>&1 &
+	 
+	 CHECK NOTES!! For this --> gnuworld@ircd:~$ /usr/local/pgsql/bin/postmaster -B 64 -N 32 -i -D /usr/local/pgsql/data -o -F -h 127.0.0.1 >/dev/null 2>&1 &
+	 NOTE: Now we got the pgsql system running and working perfect!
+	 NOTE: If sql start all good!! Exit!
+	 
+	 gnuworld@ircd:~$ exit
+	 root@ircd:~#
+	 root@ircd:~# ls /usr/include/postgresql/libpq-fe.h
+	 root@ircd:~#
+	 
+	 
+#7 - Now We going to download the GNUWorld!
+	
+	 root@ircd:~#
+	 root@ircd:~# su - gnuworld
+	 gnuworld@ircd:~$ 
+	 gnuworld@ircd:~$ git clone https://github.com/UndernetIRC/gnuworld.git
+	 gnuworld@ircd:~$ cd gnuworld/
+	 gnuworld@ircd:~/gnuworld$ 
+	 gnuworld@ircd:~/gnuworld$ pwd
+	 
+	 /home/gnuworld/gnuworld 		<-- We are in the GNUWORLD folder! Inside the gnuworld USER.
+	 
+	 gnuworld@ircd:~/gnuworld$
+	 gnuworld@ircd:~/gnuworld$ chmod +x configure 
+	 gnuworld@ircd:~/gnuworld$ ./configure --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/
+	 
+	 NOTE: For Raspberry pi4 use this: ./configure --build=unknown-unknown-linux --enable-modules=ccontrol,cservice,openchanfix --with-pgsql-home=/usr/local/pgsql --with-extra-includes=/usr/include/postgresql/
+
+	 gnuworld@ircd:~/gnuworld$ cd mod.cservice
+	 gnuworld@ircd:~/gnuworld/mod.cservice$
+	 
+         nano cservice_config.h
+         (we will enable features and change some config.)
+          change: #undef USE_NEWPASS by #define USE_NEWPASS 
+	  change: #undef ALLOW_HELLO by #define ALLOW_HELLO 
+          change: #define IPR_DEFAULT_REJECT by #undef IPR_DEFAULT_REJECT
+         NOTE: Those are mandatory if you won´t install cservice site. Once modified you save it CTRL+O & X) 
+         
+	 gnuworld@ircd:~/gnuworld/mod.cservice$ cd ..
+	 gnuworld@ircd:~/gnuworld$ 		<-- We are here again.
+	 
+	 gnuworld@ircd:~/gnuworld$ make
+	 gnuworld@ircd:~/gnuworld$ make install
+	 
+	 NOTE: NOW we going to create SQL and import .sql files inside the database!
+	 NOTE: In this step we still in the dir: /home/gnuworld/gnuworld NOW going to enter in the same dir in DOC directory.
+	 
+	 gnuworld@ircd:~/gnuworld$ cd doc/
+	 gnuworld@ircd:~/gnuworld/doc$
+	 
+	 gnuworld@ircd:~/gnuworld/doc$ pwd
+	 /home/gnuworld/gnuworld/doc
+	 
+	 gnuworld@ircd:~/gnuworld/doc$
+
+	 NOTE: Have to create STEP BY STEP!! or not going to work!
+	 NOTE: Some people like to edit the cservice.addme.sql for a New user (Admin + md5 password.)
+	 NOTE: If you stay in the default version you are going to login with: 
+	 
+	 User: Admin
+	 Pass: temPass
+	 
+	 NOTE: You can edit this info or not!
+	 NOTE: If you edit. cservice.addme.sql User and change from Admin to custom user. 
+	 You have to edit. chanfix.addme.sql, cservice.addme.sql, ccontrol.addme.sql
+	 (Use nano):  nano chanfix.addme.sql
+	 (Use nano):  nano cservice.addme.sql
+	 (Use nano):  nano ccontrol.addme.sql
+	 
+	 NOTE: Create CSERVICE SQL.
+	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/createdb --template=template0 -E=SQL_ASCII cservice
+
+	 NOTE: Import .sql Files in DB.
+	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql cservice < cservice.sql  
+ 	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql cservice < cservice.config.sql  
+ 	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql cservice < languages.sql  
+ 	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql cservice < language_table.sql  
+ 	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql cservice < greeting.sql  
+ 	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql cservice < cservice.help.sql  
+	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql cservice < cservice.web.sql  
+ 	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql cservice < cservice.addme.sql 
+
+	 NOTE: Create Cservice WEB SQL.
+	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/createdb local_db
+	 
+	 NOTE: Import .sql Files in DB. 
+	 /usr/local/pgsql/bin/psql local_db < local_db.sql
+	 
+	 NOTE: Create CCONTROL SQL.
+	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/createdb --template=template0 -E=SQL_ASCII ccontrol
+	 
+	 NOTE: Import .sql Files in DB. 	 
+	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql ccontrol < ccontrol.sql  
+ 	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql ccontrol < ccontrol.help.sql  
+ 	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql ccontrol < ccontrol.addme.sql  
+  	 gnuworld@ircd:~/gnuworld/doc$ /usr/local/pgsql/bin/psql ccontrol < ccontrol.commands.sql
+	 
+	 
+	 NOTE: Now we going to move to other directory url.
+	 
+	 gnuworld@ircd:~/gnuworld/doc$ cd ../mod.openchanfix/doc/
+	 gnuworld@ircd:~/gnuworld/mod.openchanfix/doc$ pwd
+	 
+	 /home/gnuworld/gnuworld/mod.openchanfix/doc	<-- NOTE: We are in this directory now! Make sure is the same!
+	 
+	 gnuworld@ircd:~/gnuworld/mod.openchanfix/doc$
+	 gnuworld@ircd:~/gnuworld/mod.openchanfix/doc$ /usr/local/pgsql/bin/createdb chanfix
+	 gnuworld@ircd:~/gnuworld/mod.openchanfix/doc$ /usr/local/pgsql/bin/psql chanfix < chanfix.sql  
+	 gnuworld@ircd:~/gnuworld/mod.openchanfix/doc$ /usr/local/pgsql/bin/psql chanfix < chanfix.languages.sql
+	 gnuworld@ircd:~/gnuworld/mod.openchanfix/doc$ /usr/local/pgsql/bin/psql chanfix < chanfix.language.english.sql  
+	 gnuworld@ircd:~/gnuworld/mod.openchanfix/doc$ /usr/local/pgsql/bin/psql chanfix < chanfix.help.sql  
+	 gnuworld@ircd:~/gnuworld/mod.openchanfix/doc$ /usr/local/pgsql/bin/psql chanfix < chanfix.addme.sql
+	 
+	 NOTE: NOW we got all SQL DB + .sql Imported in db.
+	 NOTE: NOW we need edit the file: GNUWorld.example.conf cservice.example.conf and ccontrol.example.conf
+	 NOTE: NOW recoment to make a copy for each file.
+	 
+	 NOTE: If you remember the las import was in /mod.openchanfix/doc so we move to new dir. 
+	 make sure you do this! STEP by STEP!
+	 
+	 NOTE: use cd ../../bin is the same for cd .. cd .. cd bin
+	 we just move back 2 directory and join in bin directory
+	 
+	 gnuworld@ircd:~/gnuworld/mod.openchanfix/doc$ cd ../../bin
+	 gnuworld@ircd:~/gnuworld/bin$ pwd
+	 
+	 /home/gnuworld/gnuworld/bin	<-- We are here now!
+	 
+	 gnuworld@ircd:~/gnuworld/bin$
+	 
+	 NOTE: Remember to EDITE: GNUWorld.example.conf cservice.example.conf and ccontrol.example.conf
+	 
+	 NOTE: Make a copy for edit.
+	 gnuworld@ircd:~/gnuworld/bin$ cp GNUWorld.example.conf GNUWorld.conf
+	 gnuworld@ircd:~/gnuworld/bin$ cp cservice.example.conf cservice.conf
+	 gnuworld@ircd:~/gnuworld/bin$ cp ccontrol.example.conf ccontrol.conf
+	 
+	 NOTE: If you dont edit this 3 files. GNUWorld is not goint to work or do nothing.
+	 
+	 NOTE: Now we just run GNUWORLD.
+	 
+	 gnuworld@ircd:~/gnuworld/bin$ ./gnuworld -f GNUWorld.conf
+	 
+	 NOTE: If all config was good!! you going to see the X in the channel you set etc...!
+	 
+	 For login to X type next command : 
+	 /msg X@services.undernet.org login Admin temPass
+	 /msg X@services.undernet.org newpass PASSWORD
+	
+	 
+	 NOTE: if you login and all go OK! you ill see this msg from X or the name you select!
+	 
+	 -X- AUTHENTICATION SUCCESSFULL AS Admin!
+	 NOTE: services.undernet.org is a domain! 
+	 (if you change this in the .conf file make sure you put your own domain).
+	 
