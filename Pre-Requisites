@@ -1,0 +1,214 @@
+ ____  ____  _____      ____  _____ ___  _   _ ___ ____ ___ _____ _____ ____
+|  _ \|  _ \| ____|    |  _ \| ____/ _ \| | | |_ _/ ___|_ _|_   _| ____/ ___|
+| |_) | |_) |  _| _____| |_) |  _|| | | | | | || |\___ \| |  | | |  _| \___ \
+|  __/|  _ <| |__|_____|  _ <| |__| |_| | |_| || | ___) | |  | | | |___ ___) |
+|_|   |_| \_\_____|    |_| \_\_____\__\_\\___/|___|____/___| |_| |_____|____/ #1
+
+----------------------------------------------------------------------------
+		OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
+			[ by: ARI3L | y2k ] #IRCAyuda STAFF
+----------------------------------------------------------------------------
+HOT NEWS: 10/2020: Read about our VM called PayasOS :) 
+https://github.com/GNUWorldChannel/PayasOS-20.04.2
+REVIEW: y2k - ARI3L
+----------------------------------------------------------------------------
+
+#1 - Update OS and change Host.  (root) 
+
+	 NOTE: After change Hostname need to reboot the machine.
+	 NOTE: Need to set a subdomain on the server for make it work well.
+	 NOTE: Need a Static local IPV4 Need to check: (netplan or network/interface)
+	 NOTE: New system like ubuntu 20.04 work with netplan.
+	 NOTE: This Config is only on IPv4 if you dont have a IPV6 Tunnel config.
+------------------------------------------------------------------------------
+	 
+	root@ircd:~# apt-get clean all 
+	root@ircd:~# apt-get clean metadata 
+	root@ircd:~# apt-get update 
+	root@ircd:~# apt-get install -y systemd nano
+	root@ircd:~# hostnamectl set-hostname irc.undernet.org
+	
+	PLEASE NOTE: when we say "irc.undernet.org" means your host name.	
+	NOTE: You can use hostnamectl. if you change with. /etc/hostname need to change /etc/hosts too.
+	NOTE: You need to set your hostname and save file. Crt + X + Y + Intro
+	
+	root@ircd:~# nano /etc/hostname
+	irc.undernet.org
+	
+	root@ircd:~# nano /etc/hosts
+	127.0.0.1 irc.undernet.org
+	
+	root@ircd:~# reboot
+	
+	
+#2 - Install (byacc, flex, screen, make, cmake, zip, perl, automake, git, wget, 
+	 ufw, net-tools, mlocate, gcc, oidentd, libpqxx-dev, tcl-dev, build-essential)
+	
+	root@ircd:~# apt-get install -y byacc flex screen make cmake zip perl automake git wget ufw net-tools mlocate gcc oidentd libpqxx-dev tcl-dev build-essential
+	
+	
+#3 - How To Configure Firewall with UFW 
+	 NOTE: FIRST NEED TO OPEN PORTS. NO ACTIVATE THE FIREWALL.
+	 NOTE: Port need: 6667 to 7000 , 4400 , 113 , 53 , 443 , 80 , 22 , 25 , 110
+	 NOTE: If you are running Secure SSL Smtp o a TLS. Dont need to open port 25(normal smtp). 
+	 NOTE: (Port: 465 Secure SMTP) (Port: 587 TLS SMTP )
+	 NOTE: You are open port 22 SSHD. Because right now is on default. if you change config on /etc/ssh/sshd_config ( #Port 22 )
+	 Need to put the same port or SSHD ssh user@domain not going to work.
+	 
+	----------------------- 
+	- Check UFW Status:
+	-----------------------
+	root@ircd:~# ufw status
+	Status: inactive
+	root@ircd:~#
+	-----------------------
+	- How to open a single port: IPV4 / IPV6 TCP
+	-----------------------
+	root@ircd:~# ufw allow 4400
+	Rules updated
+	Rules updated (v6)
+	
+	NOTE: How to Open a TCP / UDP Port.
+	NOTE: Only TCP.
+	NOTE: Only UDP.
+	NOTE: TCP + UDP.
+	NOTE: Deny access on TCP or UDP.
+	NOTE: RECOMENDATION open TCP + UDP.
+	
+	root@ircd:~# ufw allow 25/tcp
+	root@ircd:~# ufw allow 25/udp
+	root@ircd:~# ufw allow 25
+	
+	root@ircd:~# ufw deny 25/tcp
+	root@ircd:~# ufw deny 25/udp
+	
+	NOTE: Open a port rank. 6667 to 7000
+	
+	NOTE: this open TCP + UDP.
+	root@ircd:~# ufw allow 6667:7000 
+	
+	NOTE: you can only open TCP
+	root@ircd:~# ufw allow 6667:7000/tcp
+	
+	NOTE: you can only open UDP
+	root@ircd:~# ufw allow 6667:7000/udp
+	
+	-----------------------
+	- How to activate UFW (Ubuntu FireWall)
+	  NOTE: NEED to open all port. DONT activate if you not got all ports open include SSHD.
+	-----------------------
+	NOTE: If you got set the open port for SSHD. Just say Y = (YES)
+	
+	root@ircd:~# ufw enable
+	Command may disrupt existing ssh connections. Proceed with operation (y|n)?  
+	Firewall is active and enabled on system startup
+	root@ircd:~#
+	-----------------------
+	NOTE: If you dont have the UFW activate not going to Show PORTS OPEN.
+	NOTE: Now we check if all the port are correct open.
+	
+	root@ircd:~# ufw status
+	Status: active
+
+	To                         Action      From
+	--                         ------      ----
+
+	4400                       ALLOW       Anywhere
+	22                         ALLOW       Anywhere
+	53                         ALLOW       Anywhere
+	113                        ALLOW       Anywhere
+	110                        ALLOW       Anywhere
+	25                         ALLOW       Anywhere
+	443                        ALLOW       Anywhere
+	80                         ALLOW       Anywhere
+	6667                       ALLOW       Anywhere 
+    	
+	4400 (v6)                  ALLOW       Anywhere (v6)
+	22 (v6)                    ALLOW       Anywhere (v6)
+	53 (v6)                    ALLOW       Anywhere (v6)
+	113 (v6)                   ALLOW       Anywhere (v6)
+	110 (v6)                   ALLOW       Anywhere (v6)
+	25 (v6)                    ALLOW       Anywhere (v6)
+	443 (v6)                   ALLOW       Anywhere (v6)
+	80 (v6)                    ALLOW       Anywhere (v6)
+        6667 (v6)                  ALLOW       Anywhere (v6)  
+	root@ircd:~#
+	NOTE: IPV4 on top. IPV6 on (v6)
+	-----------------------
+	
+	NOTE: NOW we going to work with network or netplan for make a Local Static Ipv4 IP.
+	NOTE: You need to have your Local IP. Some like 192.168.1.150 (Make sure because this change. 192.168.0.150 and so...)
+	NOTE: You need to have the Gateway some like: 192.168.1.1 (Make sure because this change. 192.168.0.1 and so...)
+	NOTE: You need to check if  you are running on 10.0.0.1
+	
+	-----------------------
+#4 - Running oidentd and make sure the port is open!
+
+	root@ircd:~# service oidentd start
+	root@ircd:~#
+	
+	NOTE: Check if the oidentd is working well!
+	
+	root@ircd:~# ps aux | grep oidentd
+	oident     10035  0.0  0.0   5252  2188 ?        Ss   May20   0:00 /usr/sbin/oidentd -S -mf -l 10 -u oident -g oident -P 192.168.1.1
+	root      125101  0.0  0.0   6432   736 pts/0    S+   14:46   0:00 grep --color=auto oidentd
+	root@ircd:~#
+	
+	NOTE: Make sure you do the correct setting on UFW and open the port 113.
+	
+	root@ircd:~# lsof -i :113
+	COMMAND   PID   USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+	oidentd 10035 oident    4u  IPv4  34614      0t0  TCP *:auth (LISTEN)
+	oidentd 10035 oident    5u  IPv6  34615      0t0  TCP *:auth (LISTEN)
+	root@ircd:~#
+	
+#5 - Make sure you know all info about your IP / Netmask.
+
+	 NOTE: All ifconfig can change. Not going to show the same result!
+	 NOTE: inet 192.168.1.171 <-- Is your IP.
+	
+	 root@ircd:~# ifconfig
+	enp0s3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.1.171  netmask 255.255.255.0  broadcast 192.168.1.255
+        inet6 fe80::a00:27ff:fe51:9fc6  prefixlen 64  scopeid 0x20<link>
+        ether 08:00:27:51:9f:c6  txqueuelen 1000  (Ethernet)
+        RX packets 1743179  bytes 387461465 (387.4 MB)
+        RX errors 0  dropped 26  overruns 0  frame 0
+        TX packets 1133358  bytes 924588260 (924.5 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+	lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 189668  bytes 62354281 (62.3 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 189668  bytes 62354281 (62.3 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+	 root@ircd:~#
+	 ---------------------------------
+	 root@ircd:~# ifconfig | grep inet
+	 inet 192.168.1.171  netmask 255.255.255.0  broadcast 192.168.1.255
+	 inet6 fe80::a00:27ff:fe51:9fc6  prefixlen 64  scopeid 0x20<link>
+	 inet 127.0.0.1  netmask 255.0.0.0
+	 inet6 ::1  prefixlen 128  scopeid 0x10<host>
+	 root@ircd:~#
+	 ---------------------------------
+	 root@ircd:~# ifconfig | grep ether
+	 ether 08:00:27:51:9f:c6  txqueuelen 1000  (Ethernet)
+	 root@ircd:~#
+	 ---------------------------------
+	 root@ircd:~# ip route show
+	 default via 192.168.1.1 dev enp0s3 proto dhcp src 192.168.1.171 metric 100
+	 192.168.1.0/24 dev enp0s3 proto kernel scope link src 192.168.1.171
+	 192.168.1.1 dev enp0s3 proto dhcp scope link src 192.168.1.171 metric 100
+	 root@ircd:~#
+	 ---------------------------------
+	 root@ircd:~# ip route show | grep default
+	 default via 192.168.1.1 dev enp0s3 proto dhcp src 192.168.1.171 metric 100
+	 root@ircd:~#
+	 ---------------------------------
+	 root@ircd:~# ip route show | grep default | awk {'print $3'}
+	 192.168.1.1
+	 root@ircd:~#
