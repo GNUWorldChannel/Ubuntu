@@ -9,6 +9,9 @@ OS SUPPORT: Ubuntu 20.04.2 LTS \n \l - Server / Raspberry Pi 4
 		[ by: ARI3L | y2k ]
 ------------------------------------------------------------
 
+SPECIAL NOTE 11/2021: If ccontrol module give you problems, then download our version of gnuworld.
+https://github.com/GNUWorldChannel/GNUWorld2021 when you get step #7 in this guide.
+
 #1 - Prepare the system by installing the necessary components. (tcl-dev, net-tools, libpqxx-dev)
 
 	 root@ircd:~# apt-get install tcl-dev net-tools libpqxx-dev mlocate
